@@ -454,6 +454,29 @@ footer strong{color:#fff}
 .pb-txt{max-width:30em;margin:0 auto 1.8em;color:#D8D8D3}
 .precio-band .btn{background:#fff;color:#111}
 .precio-band .btn:hover{background:#E4E4DF}
+.hero .lead{margin-top:0;margin-bottom:.6em}
+.hero .lead em{color:#111}
+.hero .lead-fin{color:#57575A;font-weight:400}
+.camino{margin:0 0 56px}
+.camino img{display:block;width:100%;height:auto;aspect-ratio:16/8;object-fit:cover;object-position:30% 12%;border-radius:6px}
+.sobre-bio{max-width:40em;margin-inline:auto}
+.sobre-bio h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-top:0}
+@media(max-width:700px){.camino img{aspect-ratio:4/3;object-position:22% 50%}}
+/* ===== v7: portada con imagen ===== */
+.hero .contenido{max-width:1120px!important;text-align:left;align-items:stretch!important}
+.hero-cab{text-align:center;margin-bottom:2.2rem}
+.hero-cab h1{margin-inline:auto}
+.hero-cab .lema2{margin-bottom:0}
+.hero-cols{display:grid;gap:28px;align-items:center}
+@media(min-width:900px){.hero-cols{grid-template-columns:1fr 1fr;gap:56px}}
+.hero-img{margin:0}
+.hero-img img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:18% 15%;border-radius:6px}
+@media(max-width:899px){.hero-img img{aspect-ratio:4/3}}
+.hero-txt .lead{margin-inline:0;max-width:none;text-align:left}
+.hero-txt .acciones{justify-content:flex-start;margin-top:1.4em}
+@media(max-width:899px){.hero-txt .acciones .btn{flex:1 1 100%}}
+.sobre-cuerpo .retrato{margin:0 auto;max-width:260px}
+@media(min-width:1000px){.frases{grid-template-columns:repeat(4,1fr)!important}.frase{font-size:1.05rem!important;padding:22px 20px 24px!important}}
 /* aparición al hacer scroll */
 .js .rev{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .js .rev.in{opacity:1;transform:none}
@@ -485,13 +508,23 @@ footer strong{color:#fff}
     </svg>
   </div>
   <div class="wrap contenido">
+    <div class="hero-cab">
     <h1>Reiniciarse a los 50</h1>
     <p class="lema">De no estar bien a estar bien.</p>
     <p class="lema2">Tú también puedes volver a ponerte en marcha.</p>
-    <p class="lead">Muchos hombres de 50 años nos sentimos perdidos. Con la edad es fácil encontrar siempre una razón para no levantarse del sofá, y creemos haberlo vivido ya todo. No tenemos las ganas, ni el valor, de contárselo a un amigo: o no tenemos a nadie, o nos da vergüenza que se rían. Aquí no hay burlas ni reproches: hay otro hombre que ha pasado por lo mismo y el comienzo de un nuevo camino para ponerte en marcha a partir de los 50.</p>
-    <div class="acciones">
+    </div>
+    <div class="hero-cols">
+      <figure class="hero-img"><img src="camino.jpg" alt="Un hombre camina por una carretera vacía; al fondo, un sofá" width="1376" height="768"></figure>
+      <div class="hero-txt">
+    <p class="lead">Muchos hombres, tras superar los 50, nos sentimos perdidos. Una separación, unos hijos que se van de casa, un trabajo que se acaba… o simplemente los años, que pasan, y un día nos damos cuenta de que no estamos bien.</p>
+    <p class="lead">Pensamos que los malos hábitos de tantos años son lo normal a nuestra edad, y seguimos con ellos. Nos cuesta ponernos en marcha: siempre hay una razón para quedarse en el sofá. <em>«Ya si acaso empiezo el lunes.»</em></p>
+    <p class="lead">Y de esto no hablamos. Somos de otra generación y contárselo a un amigo no nos sale: no queremos risitas, ni burlas, ni bromas. Eso, si tenemos a alguien a quien contárselo.</p>
+    <p class="lead lead-fin">Aquí no hay burlas ni reproches. Hay otro hombre que ha pasado por lo mismo y el comienzo de un nuevo camino para ponerte en marcha a partir de los 50.</p>
+        <div class="acciones">
       <a class="btn" href="cuestionario.html">Hacer el cuestionario</a>
       <a class="btn claro" href="#como">Cómo funciona</a>
+    </div>
+      </div>
     </div>
   </div>
 </section>
@@ -506,6 +539,8 @@ footer strong{color:#fff}
       <p class="frase rev">Nadie me llama y no tengo con quién salir a divertirme.</p>
       <p class="frase rev">Sé que algo tiene que cambiar, pero no sé por dónde empezar.</p>
       <p class="frase rev">No se lo cuento a nadie porque no quiero que se rían.</p>
+      <p class="frase rev">Desde que me separé, la casa se me hace enorme y la vida, más complicada.</p>
+      <p class="frase rev">Me quedé sin trabajo y ya no sé para qué sirvo.</p>
     </div>
     <p class="lead rev" style="margin-top:1.6em">Si te reconoces en alguna de estas frases, que sepas que no eres el único. Son frases que, a nuestra edad, nos hemos dicho muchos a nosotros mismos.</p>
   </div>
@@ -536,12 +571,13 @@ footer strong{color:#fff}
   <div class="wrap">
     <p class="cita cita-top rev">No tengo una solución para ti. Pero sí estoy aquí para <span>acompañarte</span> mientras la encuentras.</p>
     <div class="sobre-cuerpo">
-      <figure class="retrato rev" id="foto-rafa"><img src="rafa.jpg" alt="Rafael Ahumada" width="680" height="850" onerror="this.closest('figure').hidden=true"></figure>
+      <figure class="retrato rev" id="foto-rafa"><img src="rafa.jpg" alt="Rafael Ahumada" width="800" height="1000" onerror="this.closest('figure').hidden=true"></figure>
       <div class="rev">
         <h2>Quién soy</h2>
       <p>Me llamo Rafael Ahumada García y tengo 56 años. He tenido que reinventarme más de una vez: trabajos que dejaron de gustarme, una separación, mudanzas, épocas de dinero justo, ser padre en plena madurez y el intento de volver a ponerme en forma pasados los 50.</p>
       <p>Trabajé de periodista. Se me da bien escuchar.</p>
       <p>Estoy aquí porque sé lo poco que se habla de esto entre hombres, y lo mucho que ayuda encontrar a alguien que no te mira desde arriba.</p>
+      </div>
       </div>
     </div>
   </div>
