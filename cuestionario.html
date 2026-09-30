@@ -416,6 +416,31 @@ footer strong{color:#fff}
 .volver{display:inline-block;margin:0 0 1.2em;font-weight:600;color:#57575A;text-decoration:none}
 .volver:hover{color:#111}
 .cuest-sec{padding-top:120px}
+/* ===== v5: centrado como Jamie, vida con cifras, filas unificadas ===== */
+.hero .contenido{align-items:center!important;text-align:center;max-width:860px;margin-inline:auto}
+.hero h1{max-width:none}
+.hero .lead{margin-inline:auto;max-width:38em}
+.hero .acciones{justify-content:center}
+.suena .wrap>h2,.suena .wrap>.lead,.ruta-sec h2,.gris-sec h2,.gris-sec .lead{text-align:center;margin-inline:auto}
+.suena .wrap>.lead{margin-top:1.6em}
+.gris-sec .lead{max-width:34em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);margin-bottom:2em}
+.stats div{padding:22px 16px 20px 0}
+.stats div+div{padding-left:20px;border-left:1px solid var(--linea)}
+.stats b{display:block;font:800 clamp(2.4rem,5vw,3.6rem)/1 var(--display);letter-spacing:-.03em}
+.stats span{display:block;font-size:.95rem;line-height:1.35;color:#57575A;margin-top:.5em}
+.filas{list-style:none;margin:1.2em 0 0;padding:0;border-top:1px solid var(--linea)}
+.filas li{position:relative;padding:16px 0 16px 34px;border-bottom:1px solid var(--linea);font:700 1.08rem/1.35 var(--display);letter-spacing:-.01em}
+.filas li::before{content:"\00D7";position:absolute;left:4px;top:11px;font:400 1.8rem/1 var(--sans)}
+.dos-sec h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.dos-sec .dos>div>.lead{margin-top:1.4em}
+.dos-sec details{border-bottom:1px solid var(--linea)}
+.dos-sec details:first-of-type{margin-top:1.2em}
+.sobre-sec .cita-top{text-align:center;max-width:22em;margin:0 auto 56px}
+.sobre-cuerpo{display:grid;gap:36px;align-items:center}
+@media(min-width:900px){.sobre-cuerpo{grid-template-columns:1fr 1.2fr;gap:72px}}
+.sobre-cuerpo .retrato{margin:0 auto;max-width:260px}
+.sobre-cuerpo h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:0}
 /* aparición al hacer scroll */
 .js .rev{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .js .rev.in{opacity:1;transform:none}
