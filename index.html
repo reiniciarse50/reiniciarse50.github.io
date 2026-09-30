@@ -445,6 +445,15 @@ footer strong{color:#fff}
 @media(min-width:900px){.sobre-cuerpo{grid-template-columns:1fr 1.2fr;gap:72px}}
 .sobre-cuerpo .retrato{margin:0 auto;max-width:260px}
 .sobre-cuerpo h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:0}
+/* ===== v6 ===== */
+.contacto-sec{background:#fff}
+.precio-band{background:#111;color:#fff;text-align:center}
+.precio-band h2{color:#fff;margin-bottom:.2em}
+.pb-sup{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;color:#B9B9B2;margin:0 0 .8em}
+.pb-precio{font:800 clamp(3rem,9vw,5.5rem)/1 var(--display);letter-spacing:-.03em;margin:.2em 0 .3em}
+.pb-txt{max-width:30em;margin:0 auto 1.8em;color:#D8D8D3}
+.precio-band .btn{background:#fff;color:#111}
+.precio-band .btn:hover{background:#E4E4DF}
 /* aparición al hacer scroll */
 .js .rev{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .js .rev.in{opacity:1;transform:none}
@@ -479,8 +488,7 @@ footer strong{color:#fff}
     <h1>Reiniciarse a los 50</h1>
     <p class="lema">De no estar bien a estar bien.</p>
     <p class="lema2">Tú también puedes volver a ponerte en marcha.</p>
-    <p class="lead">Muchos hombres de 50 años nos sentimos perdidos. Con la edad, es fácil encontrar siempre una razón para no levantarse del sofá. Creemos haberlo vivido ya todo y no tenemos las ganas, ni el valor, de contárselo a un amigo. O no tenemos a nadie a quien contárselo, o nos da vergüenza que se rían o bromeen con nosotros.</p>
-    <p class="lead" style="margin-top:.6em">Aquí no vas a encontrar burlas, ni reproches, ni a nadie que te haga sentir mal. Vas a encontrar a otro hombre que ha pasado por lo mismo y el comienzo de un nuevo camino que te lleve a ponerte en marcha y a reencontrarte contigo mismo a partir de los 50.</p>
+    <p class="lead">Muchos hombres de 50 años nos sentimos perdidos. Con la edad es fácil encontrar siempre una razón para no levantarse del sofá, y creemos haberlo vivido ya todo. No tenemos las ganas, ni el valor, de contárselo a un amigo: o no tenemos a nadie, o nos da vergüenza que se rían. Aquí no hay burlas ni reproches: hay otro hombre que ha pasado por lo mismo y el comienzo de un nuevo camino para ponerte en marcha a partir de los 50.</p>
     <div class="acciones">
       <a class="btn" href="cuestionario.html">Hacer el cuestionario</a>
       <a class="btn claro" href="#como">Cómo funciona</a>
@@ -503,21 +511,38 @@ footer strong{color:#fff}
   </div>
 </section>
 
-<section class="vida-sec" id="vida">
-  <div class="wrap dos centro">
-    <div>
-      <h2 class="rev">Cumplir 50 no es llegar al final</h2>
-      <p class="lead rev">Un hombre en España vive, de media, más de 81 años. Con 50, te quedan más de 30. Y a los 65 todavía quedan casi 20.</p>
-      <p class="lead rev">Lo importante no es cuántos años quedan, sino cómo quieres vivirlos. Se puede seguir viviendo con calidad, sin apoltronarse y sin vergüenza. Y se empieza valorándose uno mismo.</p>
-    </div>
-    <div class="rev">
-      <div class="stats"><div><b>81</b><span>años de vida media de un hombre en España</span></div><div><b>+30</b><span>años por delante, de media, a los 50</span></div><div><b>~20</b><span>años todavía por vivir, de media, a los 65</span></div></div>
-      <div class="linea-vida" role="img" aria-label="Barra de vida: 50 años vividos de una media de 81, con más de 30 por delante">
-        <div class="lv-barra"><i style="width:61.5%"></i><b style="width:38.5%"></b></div>
-        <div class="lv-etq"><span>0</span><span>Tú, hoy: 50</span><span>81</span></div>
-        <div class="lv-leyenda"><span class="v">Años vividos</span><span class="q">Años por delante, de media</span></div>
+<section class="ruta-sec" id="como">
+  <div class="wrap">
+    <h2 class="rev">Cómo empezamos</h2>
+    <ol class="ruta">
+      <li class="rev" style="--i:1"><h3>Cuestionario</h3><p>Menos de tres minutos. Al terminar ves tu perfil y cómo estás hoy.</p></li>
+      <li class="rev" style="--i:2"><h3>Te escribo en 48 horas</h3><p>Te contesto yo personalmente, en un máximo de 48 horas hábiles.</p></li>
+      <li class="rev" style="--i:3"><h3>Charla de 30 minutos</h3><p>Por videollamada. Me cuentas cómo estás y en qué punto te encuentras.</p></li>
+      <li class="rev" style="--i:4"><h3>Informe inicial</h3><p>En 48 horas, por escrito: un resumen de lo que hemos hablado y tu perfil.</p></li>
+      <li class="rev" style="--i:5"><h3>Seis semanas</h3><p>Si te parece bien, te acompaño durante seis semanas, con videollamadas de seguimiento, para que avances por tu camino.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="gris-sec">
+  <div class="wrap">
+    <h2 class="rev">Cada hombre toma el camino que necesita</h2>
+    <p class="lead rev">Hay muchas puertas por las que empezar un camino. Estas son las seis con las que nos solemos encontrar. No a todos nos mueve lo mismo.</p>
+    <div class="puertas-grid" id="puertas-web"></div>
+  </div>
+</section>
+
+<section class="sobre-sec" id="quien">
+  <div class="wrap">
+    <p class="cita cita-top rev">No tengo una solución para ti. Pero sí estoy aquí para <span>acompañarte</span> mientras la encuentras.</p>
+    <div class="sobre-cuerpo">
+      <figure class="retrato rev" id="foto-rafa"><img src="rafa.jpg" alt="Rafael Ahumada" width="680" height="850" onerror="this.closest('figure').hidden=true"></figure>
+      <div class="rev">
+        <h2>Quién soy</h2>
+      <p>Me llamo Rafael Ahumada García y tengo 56 años. He tenido que reinventarme más de una vez: trabajos que dejaron de gustarme, una separación, mudanzas, épocas de dinero justo, ser padre en plena madurez y el intento de volver a ponerme en forma pasados los 50.</p>
+      <p>Trabajé de periodista. Se me da bien escuchar.</p>
+      <p>Estoy aquí porque sé lo poco que se habla de esto entre hombres, y lo mucho que ayuda encontrar a alguien que no te mira desde arriba.</p>
       </div>
-      <p class="fuente">Fuente: INE, tablas de mortalidad 2024 (esperanza de vida de los hombres al nacer: 81,4 años; a los 65: 19,9 años más). Son medias: cada persona es distinta.</p>
     </div>
   </div>
 </section>
@@ -538,7 +563,7 @@ footer strong{color:#fff}
     <div class="rev" id="faq">
       <h2>Preguntas que suelen hacerme</h2>
       <details><summary>¿Esto es terapia?</summary><p>No. No soy psicólogo ni médico y no diagnostico ni trato nada. Si lo que te pasa necesita a un profesional, te lo digo y te ayudo a dar el paso.</p></details>
-    <details><summary>¿Cuánto cuesta?</summary><p>La charla de 30 minutos y el informe inicial son gratuitos. El acompañamiento de seis semanas cuesta <span id="precio">—</span>. Te lo digo antes de que decidas nada.</p></details>
+    <details><summary>¿Cuánto cuesta?</summary><p>La charla de 30 minutos y el informe inicial son gratuitos. El acompañamiento de seis semanas cuesta lo que ves al final de la página. Te lo digo antes de que decidas nada.</p></details>
     <details><summary>¿El perfil del cuestionario es un test psicológico?</summary><p>No. Es un perfil de preferencias hecho por mí. No mide personalidad ni diagnostica nada: es una forma de que te conozcas un poco mejor.</p></details>
     <details><summary>No me gusta hablar de mis cosas. ¿Tengo que contarlo todo?</summary><p>No. Cuentas lo que quieras, a tu ritmo. Nadie más tiene por qué enterarse.</p></details>
     <details><summary>¿Se graba la llamada?</summary><p>Nunca. Tomo notas para preparar tu informe y las borro a los tres meses, salvo que tú me pidas otra cosa.</p></details>
@@ -548,40 +573,13 @@ footer strong{color:#fff}
   </div>
 </section>
 
-<section class="ruta-sec" id="como">
-  <div class="wrap">
-    <h2 class="rev">Cómo empezamos</h2>
-    <ol class="ruta">
-      <li class="rev" style="--i:1"><h3>Cuestionario</h3><p>Menos de tres minutos. Al terminar ves tu perfil y cómo estás hoy.</p></li>
-      <li class="rev" style="--i:2"><h3>Te escribo en 48 horas</h3><p>Te contesto yo personalmente, en un máximo de 48 horas hábiles.</p></li>
-      <li class="rev" style="--i:3"><h3>Charla de 30 minutos</h3><p>Por videollamada. Me cuentas cómo estás y en qué punto te encuentras.</p></li>
-      <li class="rev" style="--i:4"><h3>Informe inicial</h3><p>En 48 horas, por escrito: un resumen de lo que hemos hablado y tu perfil.</p></li>
-      <li class="rev" style="--i:5"><h3>Seis semanas</h3><p>Si te parece bien, te acompaño durante seis semanas, con videollamadas de seguimiento, para que avances por tu camino.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="gris-sec">
-  <div class="wrap">
-    <h2 class="rev">Cada hombre toma el camino que necesita</h2>
-    <p class="lead rev">Cada hombre sigue su propio camino, a su ritmo. No a todos nos mueve lo mismo.</p>
-    <div class="puertas-grid" id="puertas-web"></div>
-  </div>
-</section>
-
-<section class="sobre-sec" id="quien">
-  <div class="wrap">
-    <p class="cita cita-top rev">No tengo una solución para ti. Pero sí estoy aquí para <span>acompañarte</span> mientras la encuentras.</p>
-    <div class="sobre-cuerpo">
-      <figure class="retrato rev" id="foto-rafa"><img src="rafa.jpg" alt="Rafael Ahumada" width="680" height="850" onerror="this.closest('figure').hidden=true"></figure>
-      <div class="rev">
-        <h2>Quién soy</h2>
-      <p>Me llamo Rafael Ahumada García y tengo 56 años. He tenido que reinventarme más de una vez: trabajos que dejaron de gustarme, una separación, mudanzas, épocas de dinero justo, ser padre en plena madurez y el intento de volver a ponerme en forma pasados los 50.</p>
-      <p>Trabajé de periodista. Se me da bien escuchar.</p>
-      <p>Tengo dos libros publicados. Si te apuntas, te los regalo.</p>
-      <p>Estoy aquí porque sé lo poco que se habla de esto entre hombres, y lo mucho que ayuda encontrar a alguien que no te mira desde arriba.</p>
-      </div>
-    </div>
+<section class="precio-band" id="precio-sec">
+  <div class="wrap rev">
+    <p class="pb-sup">El acompañamiento</p>
+    <h2>Seis semanas a tu lado</h2>
+    <p class="pb-precio"><span id="precio">—</span></p>
+    <p class="pb-txt">La charla de 30 minutos y el informe inicial son gratuitos. Primero nos conocemos; después decides tú.</p>
+    <a class="btn" href="cuestionario.html">Hacer el cuestionario</a>
   </div>
 </section>
 
