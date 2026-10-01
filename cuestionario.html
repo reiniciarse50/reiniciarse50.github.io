@@ -578,7 +578,7 @@ footer strong{color:#fff}
 const CONFIG = {
   FORM_ENDPOINT: "https://formspree.io/f/mgavdbol",                    // p. ej. https://formspree.io/f/xxxxxxx ; vacío = se abre el correo del visitante
   CORREO_DESTINO: "reiniciarse50@proton.me",
-  CAL_URL: "",                          // enlace de Cal.com; vacío = no se muestra
+  CAL_URL: "https://scheduler.zoom.us/rafael-ahumada-nshwae/charla-inicial-reiniciarse-a-los-50",                        // enlace de Cal.com; vacío = no se muestra
   PRECIO: "390 €"                       // precio del acompañamiento de seis semanas (propuesta a confirmar)
 };
 
@@ -914,7 +914,7 @@ function mostrar(d, perfil, estado){
     envio='<p><strong>Falta un último paso.</strong> Pulsa el botón para enviarme tus respuestas desde tu correo. Te contesto en un máximo de 48 horas hábiles.</p><p><a class="btn" href="'+href+'">Enviarme mis respuestas</a></p>';
   }
   const invita = '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
-  const cal = CONFIG.CAL_URL ? '<p>Si prefieres, <a href="'+CONFIG.CAL_URL+'">elige tú un hueco para la charla</a>.</p>' : "";
+  const cal = CONFIG.CAL_URL ? '<p>Cuando quieras, <a href="'+CONFIG.CAL_URL+'">elige día y hora para la charla</a>.</p>' : "";
 
   $("resultado").innerHTML =
    '<div class="res">'+
