@@ -578,7 +578,7 @@ footer strong{color:#fff}
 const CONFIG = {
   FORM_ENDPOINT: "https://formspree.io/f/mgavdbol",                    // p. ej. https://formspree.io/f/xxxxxxx ; vacío = se abre el correo del visitante
   CORREO_DESTINO: "reiniciarse50@proton.me",
-  CAL_URL: "https://scheduler.zoom.us/rafael-ahumada-nshwae/charla-inicial-reiniciarse-a-los-50",                        // enlace de Cal.com; vacío = no se muestra
+  CAL_URL: "",                          // no se muestra en pantalla: el enlace va solo por correo
   PRECIO: "390 €"                       // precio del acompañamiento de seis semanas (propuesta a confirmar)
 };
 
@@ -914,7 +914,6 @@ function mostrar(d, perfil, estado){
     envio='<p><strong>Falta un último paso.</strong> Pulsa el botón para enviarme tus respuestas desde tu correo. Te contesto en un máximo de 48 horas hábiles.</p><p><a class="btn" href="'+href+'">Enviarme mis respuestas</a></p>';
   }
   const invita = '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
-  const cal = CONFIG.CAL_URL ? '<p>Cuando quieras, <a href="'+CONFIG.CAL_URL+'">elige día y hora para la charla</a>.</p>' : "";
 
   $("resultado").innerHTML =
    '<div class="res">'+
@@ -924,7 +923,7 @@ function mostrar(d, perfil, estado){
       '<div><h3>Tu mapa hoy</h3><div class="radar-caja" role="img" aria-label="Tu mapa de cinco áreas">'+radar(v, principal.id)+'</div>'+puntoFuerte+'<p class="nota-area">'+frase+'</p>'+extra+'</div>'+
       '<div>'+colDer+'</div>'+
     '</div>'+
-    '<div class="res-pie">'+envio+invita+cal+
+    '<div class="res-pie">'+envio+invita+
       '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las veinte frases de «Cómo eres» son el cuestionario Mini-IPIP (Donnellan y otros, 2006), de uso público, en su traducción española publicada. Los tramos «bajo, medio, alto» son orientativos: el test no tiene baremo oficial. El mapa de las cinco áreas y las direcciones para empezar son míos y no forman parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
       '<p class="aviso-crisis" style="margin-bottom:0">Si en algún momento piensas en hacerte daño, llama al <strong>024</strong> (24 horas, gratuito) o al <strong>112</strong>.</p></div>'+
    '</div>';
