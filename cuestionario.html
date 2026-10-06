@@ -897,23 +897,21 @@ function mostrar(d, perfil, estado){
   const fuerte = AREAS.filter(a=>v[a.id]===max)[0];
   const puntoFuerte = max>=6 ? '<p class="nota-area"><strong>Lo que ya te sostiene:</strong> '+fuerte.n.toLowerCase()+'. Ahí tienes base sobre la que construir.</p>' : "";
   const car = perfil.car;
-  const espectros = ORDEN_FACTORES.map(f=>{ const F=FACTORES[f], pos=(car[f]-1)/4*100;
+  const marcados = ORDEN_FACTORES.slice().sort((a,b)=>Math.abs(car[b]-3)-Math.abs(car[a]-3)).slice(0,3);
+  const espectros = ORDEN_FACTORES.filter(f=>marcados.includes(f)).map(f=>{ const F=FACTORES[f], pos=(car[f]-1)/4*100;
     return '<div class="esp"><p class="esp-t">'+F.n+' · '+num1(car[f])+' de 5</p><div class="esp-barra" aria-hidden="true"><i style="left:'+pos.toFixed(0)+'%"></i></div>'+
       '<div class="esp-ext"><span>'+F.izq+'</span><span>'+F.der+'</span></div><p class="esp-txt">'+F.t[nivel(car[f])]+'</p></div>'; }).join("");
-  const cabPerfil = '<p class="perfil-nombre">Tu perfil de cinco rasgos</p>'+
-      '<p>Son tus resultados en el cuestionario de personalidad Mini-IPIP. Son tendencias, no etiquetas: todas valen para ponerse en marcha.</p>'+
-      '<p style="margin-top:.8em;color:#fff">Por dónde has elegido empezar: '+nombrePerfil+'.</p>';
-  const colDer = '<h3>Cómo eres</h3>'+espectros+
-        '<h3 style="margin-top:1.2em">Por dónde podríamos empezar</h3>'+
-        '<ul class="pasitos"><li>'+pasos[0]+'</li><li>'+pasos[1]+'</li></ul>'+'<p class="nota-area">No es un plan: son direcciones. El cómo lo vemos juntos en la charla.</p>'+rasgosHtml;
+  const cabPerfil = '<p class="perfil-nombre">Tu perfil</p>'+
+      '<p>Son tus resultados en el cuestionario de personalidad Mini-IPIP. Son tendencias, no etiquetas: todas valen para ponerse en marcha.</p>';
+  const colDer = '<h3>Cómo eres</h3>'+espectros;
   let envio="";
-  if(estado==="ok") envio='<p><strong>Ya me ha llegado tu cuestionario.</strong> Te escribo en un máximo de 48 horas hábiles al contacto que me has dejado.</p>';
+  if(estado==="ok") envio='<p><strong>Ya me ha llegado tu cuestionario.</strong> En un máximo de 48 horas hábiles recibirás en el contacto que me has dejado el detalle completo de tu resultado, y un enlace por si te apetece reservar día y hora para una charla inicial. Si no lo ves, mira en spam o promociones.</p>';
   else if(estado==="error") envio='<p><strong>No he podido enviar tu cuestionario.</strong> Prueba de nuevo dentro de un rato o escríbeme a <a href="mailto:'+CONFIG.CORREO_DESTINO+'">'+CONFIG.CORREO_DESTINO+'</a>.</p>';
   else{
     const href="mailto:"+CONFIG.CORREO_DESTINO+"?subject="+encodeURIComponent("Cuestionario Reiniciarse a los 50 — "+d.nombre)+"&body="+encodeURIComponent(cuerpoCorreo(d));
     envio='<p><strong>Falta un último paso.</strong> Pulsa el botón para enviarme tus respuestas desde tu correo. Te contesto en un máximo de 48 horas hábiles.</p><p><a class="btn" href="'+href+'">Enviarme mis respuestas</a></p>';
   }
-  const invita = '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
+  const invita = estado==='ok' ? '' : '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
 
   $("resultado").innerHTML =
    '<div class="res">'+
@@ -924,7 +922,7 @@ function mostrar(d, perfil, estado){
       '<div>'+colDer+'</div>'+
     '</div>'+
     '<div class="res-pie">'+envio+invita+
-      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las veinte frases de «Cómo eres» son el cuestionario Mini-IPIP (Donnellan y otros, 2006), de uso público, en su traducción española publicada. Los tramos «bajo, medio, alto» son orientativos: el test no tiene baremo oficial. El mapa de las cinco áreas y las direcciones para empezar son míos y no forman parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
+      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las veinte frases de «Cómo eres» son el cuestionario Mini-IPIP (Donnellan y otros, 2006), de uso público, en su traducción española publicada. Los tramos «bajo, medio, alto» son orientativos: el test no tiene baremo oficial. El mapa de las cinco áreas es mío y no forma parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
       '<p class="aviso-crisis" style="margin-bottom:0">Si en algún momento piensas en hacerte daño, llama al <strong>024</strong> (24 horas, gratuito) o al <strong>112</strong>.</p></div>'+
    '</div>';
   $("marco").style.display="none";
