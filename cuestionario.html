@@ -705,10 +705,10 @@ const CARAC = [
    extraversión × estabilidad emocional). Aquí se les da nombre y color propios. Corte en 3,0 (centro de la escala 1-5);
    no hay baremo oficial. Si la persona queda cerca del centro en un eje, se añade una «tendencia» al perfil vecino. ---------- */
 const PERFILES = {
-  chispa:  {n:"Chispa",  color:"#E3A008", tinta:"#1A1A1A", cl:"amarillo", tmp:"sanguíneo",   frase:"Te cargas de energía con la gente: hablar, planear y estar en marcha te sienta bien."},
-  motor:   {n:"Motor",   color:"#C0392B", tinta:"#FFFFFF", cl:"rojo",     tmp:"colérico",    frase:"Tienes empuje y carácter: quieres que las cosas avancen y lo sientes todo con intensidad."},
-  remanso: {n:"Remanso", color:"#3F8F6B", tinta:"#FFFFFF", cl:"verde",    tmp:"flemático",   frase:"Eres tranquilo y constante: prefieres pocas cosas bien hechas a mucho ruido."},
-  faro:    {n:"Faro",    color:"#2F63A6", tinta:"#FFFFFF", cl:"azul",     tmp:"melancólico", frase:"Piensas y sientes hondo: notas lo que otros pasan por alto y te exiges mucho."}
+  chispa:  {n:"Comunicador", color:"#E3A008", tinta:"#1A1A1A", cl:"amarillo", tmp:"sanguíneo",   frase:"Te cargas de energía con la gente: hablar, planear y estar en marcha te sienta bien."},
+  motor:   {n:"Director", color:"#C0392B", tinta:"#FFFFFF", cl:"rojo",     tmp:"colérico",    frase:"Tienes empuje y carácter: quieres que las cosas avancen y lo sientes todo con intensidad."},
+  remanso: {n:"Sostenedor", color:"#3F8F6B", tinta:"#FFFFFF", cl:"verde",    tmp:"flemático",   frase:"Eres tranquilo y constante: prefieres pocas cosas bien hechas a mucho ruido."},
+  faro:    {n:"Pensador", color:"#2F63A6", tinta:"#FFFFFF", cl:"azul",     tmp:"melancólico", frase:"Piensas y sientes hondo: notas lo que otros pasan por alto y te exiges mucho."}
 };
 function clasificar(car){
   const E=car.E, S=6-car.N;
@@ -994,7 +994,7 @@ function mostrar(d, perfil, estado){
       '<div>'+colDer+'</div>'+
     '</div>'+
     '<div class="res-pie">'+envio+invita+
-      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las cincuenta frases de «Cómo eres» son los marcadores Big Five del IPIP (Goldberg), de uso público, en su traducción española publicada. Los cuatro perfiles (Chispa, Motor, Remanso y Faro) son los cuatro temperamentos clásicos con nombre y color propios, ordenados según extraversión y estabilidad emocional. No hay baremo oficial: el corte es el centro de la escala, y quien queda cerca del centro lo ves como «tendencia». El mapa de las cinco áreas es mío y no forma parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
+      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las cincuenta frases de «Cómo eres» son los marcadores Big Five del IPIP (Goldberg), de uso público, en su traducción española publicada. Los cuatro perfiles (Comunicador, Director, Sostenedor y Pensador) son los cuatro temperamentos clásicos con nombre y color propios, ordenados según extraversión y estabilidad emocional. No hay baremo oficial: el corte es el centro de la escala, y quien queda cerca del centro lo ves como «tendencia». El mapa de las cinco áreas es mío y no forma parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
       '<p class="aviso-crisis" style="margin-bottom:0">Si en algún momento piensas en hacerte daño, llama al <strong>024</strong> (24 horas, gratuito) o al <strong>112</strong>.</p></div>'+
    '</div>';
   $("marco").style.display="none";
