@@ -387,7 +387,12 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{border-color:#11
 .check input{accent-color:#111}
 .aviso-crisis{background:var(--cielo)}
 .res-cab{background:#111}
-.res-cab .perfil-nombre{color:#fff}
+.res-cab .perfil-nombre{color:#fff;display:flex;align-items:center;gap:.4em}
+.perfil-punto{display:inline-block;width:.8em;height:.8em;border-radius:50%;flex:none}
+.perfil-col{font-weight:500;font-size:.6em;opacity:.8}
+.perfil-tend{margin:0 0 .6em;font-size:1.05rem}
+.perfil-aviso{margin-top:.8em!important;font-size:.92rem;opacity:.85}
+.cont{font-weight:600}
 .res-cab p{color:#D8D8D3}
 .rasgos li{background:#111}
 .pasitos li{background:var(--cielo)}
@@ -478,7 +483,7 @@ footer strong{color:#fff}
     <div class="cuest-cab rev">
       <a class="volver" href="index.html">← Volver a la portada</a>
       <h2>Hacer el cuestionario</h2>
-      <p class="lead">Cinco pasos cortos, unos cinco minutos. No hay respuestas buenas ni malas. Al final ves tu mapa y tu perfil, y yo lo leo personalmente.</p>
+      <p class="lead">Cinco pasos, unos ocho minutos. No hay respuestas buenas ni malas. Al final ves tu perfil en pantalla y te llega completo por correo en el momento.</p>
       <p class="aviso-ini"><strong>Antes de empezar:</strong> puede que en alguna pregunta no te veas reflejado en ninguna respuesta, o que te encajen varias a la vez. Es normal. Elige siempre la más cercana a ti o la que harías antes. No es un examen: es solo un punto de partida para hablar.</p>
     </div>
 
@@ -495,7 +500,8 @@ footer strong{color:#fff}
 
         <div class="paso" data-paso="2" tabindex="-1" hidden>
           <h3 class="tit">Cómo eres</h3>
-          <p class="ayuda">Veinte frases cortas. En cada una marca de 1 a 5 cuánto estás de acuerdo con que te describe: 1, nada de acuerdo; 5, total acuerdo. No hay respuestas buenas ni malas. Contesta lo primero que pienses.</p>
+          <p class="ayuda">Cincuenta frases cortas, es la parte más larga. En cada una marca de 1 a 5 cuánto estás de acuerdo con que te describe: 1, nada de acuerdo; 5, total acuerdo. No hay respuestas buenas ni malas. Contesta lo primero que pienses.</p>
+          <p class="ayuda cont" id="cont-car" aria-live="polite">Llevas 0 de 50</p>
           <div id="carac"></div>
         </div>
 
@@ -524,7 +530,7 @@ footer strong{color:#fff}
 
         <div class="paso" data-paso="5" tabindex="-1" hidden>
           <h3 class="tit">Dónde te contesto</h3>
-          <p class="ayuda">Último paso. Con estos datos te respondo yo, en un máximo de 48 horas hábiles, y te enseño tu perfil al enviar.</p>
+          <p class="ayuda">Último paso. Tu perfil completo te llega a tu correo en el momento de enviar, y te lo enseño también en pantalla.</p>
           <div class="dosc">
             <div class="fila" data-campo="nombre">
               <label class="campo" for="nombre">Tu nombre de pila</label>
@@ -540,15 +546,15 @@ footer strong{color:#fff}
             </div>
           </div>
           <div class="fila" data-campo="contacto">
-            <label class="campo" for="contacto">Correo o WhatsApp para responderte</label>
-            <input type="text" id="contacto" autocomplete="email" inputmode="email">
-            <p class="err">Necesito un correo o un WhatsApp para contestarte. Por ejemplo: nombre@correo.com o 600 123 456.</p>
+            <label class="campo" for="contacto">Tu correo (ahí te llega tu resultado)</label>
+            <input type="email" id="contacto" autocomplete="email" inputmode="email">
+            <p class="err">Necesito un correo válido para enviarte tu resultado. Por ejemplo: nombre@correo.com.</p>
           </div>
           <div class="fila" data-campo="c1">
-            <label class="check"><input type="checkbox" id="c1"><span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que Rafael Ahumada use estos datos para responderme.</span></label>
+            <label class="check"><input type="checkbox" id="c1"><span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que Rafael Ahumada use estos datos para enviarme mi resultado por correo y responderme.</span></label>
             <p class="err">Marca esta casilla para que pueda usar tus datos y contestarte.</p>
           </div>
-          <p class="legal">No hay cargo ni compromiso. Solo uso tus datos para contestarte. No te pido datos de salud ni hace falta que me los cuentes.</p>
+          <p class="legal">No hay cargo ni compromiso. Tu resultado te llega al momento y no te envío publicidad. No te pido datos de salud ni hace falta que me los cuentes.</p>
         </div>
 
         <div class="nav">
@@ -578,6 +584,7 @@ footer strong{color:#fff}
 const CONFIG = {
   FORM_ENDPOINT: "https://formspree.io/f/mgavdbol",                    // p. ej. https://formspree.io/f/xxxxxxx ; vacío = se abre el correo del visitante
   CORREO_DESTINO: "reiniciarse50@proton.me",
+  WORKER_URL: "https://reiniciarse-resultado.reiniciarse50.workers.dev/",                       // Cloudflare Worker que envía al visitante su resultado por correo (vacío = se le dice que lo recibirá a mano)
   CAL_URL: "",                          // no se muestra en pantalla: el enlace va solo por correo
   PRECIO: "390 €"                       // precio del acompañamiento de seis semanas (propuesta a confirmar)
 };
@@ -638,31 +645,83 @@ const ORDEN_PUERTAS = ["gente","movimiento","manos","aprender","crear","ayudar"]
 (document.getElementById("puertas-web")||{}).innerHTML = ORDEN_PUERTAS.map(k=>
   '<div class="puerta rev"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONOS[k]+'</svg><h3>'+PUERTAS[k].n+'</h3><p>'+PUERTAS[k].web+'</p></div>').join("");
 
-/* ---------- CÓMO ERES: Mini-IPIP (Donnellan, Oswald, Baird & Lucas, 2006), 20 ítems de dominio público.
-   Traducción española publicada en ipip.ori.org (Agustín Martínez-Molina), en su orden y redacción originales.
-   E extraversión, A amabilidad, C responsabilidad, N neuroticismo, O apertura (imaginación e intelecto). Último valor: 1 = ítem inverso. ---------- */
+/* ---------- CÓMO ERES: IPIP, marcadores Big Five de Goldberg (50 ítems, de dominio público, ipip.ori.org).
+   Traducción al español publicada en ipip.ori.org (Rodrigo de Oliveira), en su orden y redacción originales.
+   E extraversión, A amabilidad, C responsabilidad, N neuroticismo (el inverso de la estabilidad emocional), O intelecto/imaginación.
+   Último valor: 1 = ítem inverso. Los ítems de estabilidad emocional se puntúan aquí como neuroticismo (se invierten los dos redactados en positivo). ---------- */
 const CARAC = [
   ["Soy el alma de la fiesta.","E",0],
-  ["Soy sensible hacia las emociones de otros.","A",0],
-  ["Realizo mis tareas inmediatamente.","C",0],
-  ["Tengo frecuentes cambios de ánimo.","N",0],
-  ["Tengo mucha imaginación.","O",0],
+  ["Me preocupo poco por los demás.","A",1],
+  ["Siempre estoy preparado.","C",0],
+  ["Me estreso con facilidad.","N",0],
+  ["Tengo un vocabulario amplio.","O",0],
   ["No hablo mucho.","E",1],
-  ["No me interesan los problemas de otras personas.","A",1],
-  ["A menudo olvido poner las cosas en su lugar.","C",1],
+  ["Me intereso por la gente.","A",0],
+  ["Dejo mis pertenencias en cualquier lado.","C",1],
   ["Estoy relajado la mayor parte del tiempo.","N",1],
-  ["No estoy interesado en las ideas abstractas.","O",1],
-  ["En las fiestas hablo con muchas personas.","E",0],
-  ["Siento las emociones de los otros.","A",0],
-  ["Me gusta el orden.","C",0],
-  ["Me molesto fácilmente.","N",0],
-  ["Tengo dificultad para entender ideas abstractas.","O",1],
-  ["Prefiero pasar desapercibido.","E",1],
-  ["En realidad no estoy interesado en los demás.","A",1],
+  ["Me cuesta entender ideas abstractas.","O",1],
+  ["Me siento cómodo con la gente.","E",0],
+  ["Ofendo a la gente.","A",1],
+  ["Pongo atención en los detalles.","C",0],
+  ["Me preocupo por todo.","N",0],
+  ["Tengo mucha imaginación.","O",0],
+  ["Prefiero mantenerme al margen.","E",1],
+  ["Soy sensible hacia las emociones de otros.","A",0],
   ["Soy desordenado.","C",1],
   ["Rara vez me siento triste.","N",1],
-  ["No tengo buena imaginación.","O",1]
+  ["No me interesan las ideas abstractas.","O",1],
+  ["Comienzo las conversaciones.","E",0],
+  ["No me interesan los problemas de otras personas.","A",1],
+  ["Realizo mis tareas inmediatamente.","C",0],
+  ["Me molesto fácilmente.","N",0],
+  ["Tengo excelentes ideas.","O",0],
+  ["No tengo mucho que decir.","E",1],
+  ["Tengo un corazón sensible.","A",0],
+  ["A menudo olvido poner las cosas en su lugar.","C",1],
+  ["Me disgusto con facilidad.","N",0],
+  ["No tengo una buena imaginación.","O",1],
+  ["En las fiestas hablo con muchas personas diferentes.","E",0],
+  ["En realidad no me intereso por los demás.","A",1],
+  ["Me gusta el orden.","C",0],
+  ["Cambio mucho de humor.","N",0],
+  ["Soy rápido para entender las cosas.","O",0],
+  ["No me gusta llamar la atención.","E",1],
+  ["Dedico tiempo a los demás.","A",0],
+  ["Evado mis obligaciones.","C",1],
+  ["Tengo cambios frecuentes de estado de ánimo.","N",0],
+  ["Utilizo palabras difíciles.","O",0],
+  ["No me importa ser el centro de atención.","E",0],
+  ["Siento las emociones de los otros.","A",0],
+  ["Hago un programa y lo sigo.","C",0],
+  ["Me irrito fácilmente.","N",0],
+  ["Dedico tiempo a reflexionar.","O",0],
+  ["Cuando estoy entre desconocidos me mantengo callado.","E",1],
+  ["Hago sentir cómoda a la gente.","A",0],
+  ["Soy perfeccionista en mi trabajo.","C",0],
+  ["Me siento triste frecuentemente.","N",0],
+  ["Estoy lleno de ideas.","O",0]
 ];
+/* ---------- PERFILES: los cuatro temperamentos clásicos (Hipócrates y Galeno; Eysenck los relacionó con
+   extraversión × estabilidad emocional). Aquí se les da nombre y color propios. Corte en 3,0 (centro de la escala 1-5);
+   no hay baremo oficial. Si la persona queda cerca del centro en un eje, se añade una «tendencia» al perfil vecino. ---------- */
+const PERFILES = {
+  chispa:  {n:"Chispa",  color:"#E3A008", tinta:"#1A1A1A", cl:"amarillo", tmp:"sanguíneo",   frase:"Te cargas de energía con la gente: hablar, planear y estar en marcha te sienta bien."},
+  motor:   {n:"Motor",   color:"#C0392B", tinta:"#FFFFFF", cl:"rojo",     tmp:"colérico",    frase:"Tienes empuje y carácter: quieres que las cosas avancen y lo sientes todo con intensidad."},
+  remanso: {n:"Remanso", color:"#3F8F6B", tinta:"#FFFFFF", cl:"verde",    tmp:"flemático",   frase:"Eres tranquilo y constante: prefieres pocas cosas bien hechas a mucho ruido."},
+  faro:    {n:"Faro",    color:"#2F63A6", tinta:"#FFFFFF", cl:"azul",     tmp:"melancólico", frase:"Piensas y sientes hondo: notas lo que otros pasan por alto y te exiges mucho."}
+};
+function clasificar(car){
+  const E=car.E, S=6-car.N;
+  const q=(e,s)=> e>=3 ? (s>=3 ? "chispa":"motor") : (s>=3 ? "remanso":"faro");
+  const principal=q(E,S);
+  const dE=Math.abs(E-3), dS=Math.abs(S-3), UMBRAL=0.5;
+  let secundario=null;
+  if(Math.min(dE,dS)<UMBRAL){
+    secundario = dE<=dS ? q(E>=3?2.9:3.1,S) : q(E,S>=3?2.9:3.1);
+  }
+  return {principal, secundario, E, S};
+}
+
 const FACTORES = {
   E:{n:"Extraversión", izq:"Reservado y tranquilo", der:"Sociable y enérgico",
      t:["Tiendes a ser reservado y tranquilo: te sientes bien con poca gente y con tiempo a solas.","Combinas ratos de compañía con ratos a solas, sin decantarte claramente.","Tiendes a ser sociable y enérgico: hablar y estar con gente suele darte energía."]},
@@ -679,10 +738,10 @@ const ORDEN_FACTORES = ["E","A","C","N","O"];
 const nivel = m => m<=2.5 ? 0 : (m>=3.5 ? 2 : 1);
 
 function calcularCarac(resp){
-  // Puntuación estándar: se invierten los ítems inversos (6 - valor) y se hace la media de los 4 ítems de cada rasgo (1-5).
+  // Puntuación estándar: se invierten los ítems inversos (6 - valor) y se hace la media de los 10 ítems de cada rasgo (1-5).
   const suma={E:0,A:0,C:0,N:0,O:0};
   CARAC.forEach((c,i)=>{ const v=+resp[i]; suma[c[1]] += c[2] ? 6-v : v; });
-  const m={}; ORDEN_FACTORES.forEach(f=>m[f]=suma[f]/4);
+  const m={}; ORDEN_FACTORES.forEach(f=>m[f]=suma[f]/10);
   return m;
 }
 const num1 = x => x.toFixed(1).replace(".",",");
@@ -752,9 +811,7 @@ function marcar(campo, ok){
   return ok;
 }
 function esContactoValido(v){
-  v=v.trim();
-  if(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return true;
-  return /^\d{9,15}$/.test(v.replace(/[\s.\-()]/g,"").replace(/^\+/,""));
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 }
 function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 
@@ -783,7 +840,7 @@ function validar(n){
   }
   if(n===5){
     if(!marcar("nombre",$("nombre").value.trim().length>0)) f.push(["nombre","tu nombre"]);
-    if(!marcar("contacto",esContactoValido($("contacto").value))) f.push(["contacto","un correo o WhatsApp válido"]);
+    if(!marcar("contacto",esContactoValido($("contacto").value))) f.push(["contacto","un correo válido"]);
     if(!marcar("c1",$("c1").checked)) f.push(["c1","aceptar la política de privacidad"]);
   }
   if(f.length){
@@ -815,21 +872,22 @@ irA(1,false);
 
 ["nombre","contacto","ahora"].forEach(id=>$(id).addEventListener("input",()=>form.querySelector('[data-campo="'+id+'"]').classList.remove("invalid")));
 ["c1"].forEach(id=>$(id).addEventListener("change",()=>form.querySelector('[data-campo="'+id+'"]').classList.remove("invalid")));
-form.addEventListener("change",e=>{ if(e.target.name&&/^(par|car|area-|ganas)/.test(e.target.name)){ const c=form.querySelector('[data-campo="'+e.target.name+'"]'); if(c)c.classList.remove("invalid"); } });
+form.addEventListener("change",e=>{ if(e.target.name&&/^car/.test(e.target.name)){ const n=CARAC.filter((c,i)=>form.querySelector('input[name="car'+i+'"]:checked')).length; $("cont-car").textContent="Llevas "+n+" de "+CARAC.length; }
+  if(e.target.name&&/^(par|car|area-|ganas)/.test(e.target.name)){ const c=form.querySelector('[data-campo="'+e.target.name+'"]'); if(c)c.classList.remove("invalid"); } });
 
 /* ---------- ENVÍO Y RESULTADO ---------- */
 form.addEventListener("submit", async ev=>{
   ev.preventDefault();
   if(!validar(5)) return;
   const carResp = CARAC.map((c,i)=>form.querySelector('input[name="car'+i+'"]:checked').value);
-  const car = calcularCarac(carResp);
+  const car = calcularCarac(carResp); const cls = clasificar(car);
   const prefResp = PREFS.map((p,i)=>+form.querySelector('input[name="par'+i+'"]:checked').value);
   const puertas = [...form.querySelectorAll('input[name="puerta"]:checked')].map(x=>x.value);
   const perfil = {car, puertas, rasgos: PREFS.map((p,i)=>p.o[prefResp[i]].t)};
   const d = {
     nombre:$("nombre").value.trim(), contacto:$("contacto").value.trim(), edad:$("edad").value,
     puntuaciones:valores(), ahora:$("ahora").value.trim(), ganas:marcadas("ganas"),
-    car, puertas:puertas.map(k=>PUERTAS[k].n), rasgos:perfil.rasgos.map(t=>RASGOS[t])
+    car, cls, puertasIds:puertas, rasgosIds:perfil.rasgos, puertas:puertas.map(k=>PUERTAS[k].n), rasgos:perfil.rasgos.map(t=>RASGOS[t])
   };
   const estado = await enviar(d);
   mostrar(d, perfil, estado);
@@ -856,20 +914,30 @@ function ficha(d){
   ];
   if(alertas.length){ l.push("","⚠ AVISOS"); alertas.forEach(x=>l.push("· "+x)); }
   l.push("","MAPA HOY (0-10)", AREAS.map(a=>a.n+" "+v[a.id]).join(" · "),
-    "","CÓMO ES · MINI-IPIP (media de 1 a 5)");
+    "","PERFIL · "+nombrePerfil(d.cls),"","CÓMO ES · IPIP-50 (media de 1 a 5)");
   ORDEN_FACTORES.forEach(f=>l.push("· "+FACTORES[f].n+": "+num1(d.car[f])+" ("+nivelTxt[nivel(d.car[f])]+")"));
   l.push("","CÓMO EMPEZAR","· Puertas elegidas: "+d.puertas.join(" + "),"· Preferencias: "+d.rasgos.join(" · "),
     "","Consentimiento: sí (política de privacidad).");
   return l.join("\n");
 }
 const cuerpoCorreo = d => ficha(d);
+function nombrePerfil(c){ const p=PERFILES[c.principal]; let t=p.n+" ("+p.cl+")"; if(c.secundario){ const q=PERFILES[c.secundario]; t+=" con tendencia a "+q.n+" ("+q.cl+")"; } return t; }
+async function enviarResultado(d){
+  if(!CONFIG.WORKER_URL) return false;
+  try{
+    const r = await fetch(CONFIG.WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({nombre:d.nombre, email:d.contacto, car:d.car, areas:d.puntuaciones, ganas:d.ganas, puertas:d.puertasIds, rasgos:d.rasgosIds})});
+    return r.ok;
+  }catch(e){ return false; }
+}
 async function enviar(d){
   if(CONFIG.FORM_ENDPOINT){
     try{
       const cuerpo={nombre:d.nombre, contacto:d.contacto, ficha:ficha(d), _subject:"Cuestionario · "+d.nombre};
       if(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.contacto)) cuerpo.email=d.contacto;
       const r = await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(cuerpo)});
-      return r.ok?"ok":"error";
+      if(!r.ok) return "error";
+      return (await enviarResultado(d)) ? "ok" : "sin-correo";
     }catch(e){return "error";}
   }
   return "mailto";
@@ -901,28 +969,32 @@ function mostrar(d, perfil, estado){
   const espectros = ORDEN_FACTORES.filter(f=>marcados.includes(f)).map(f=>{ const F=FACTORES[f], pos=(car[f]-1)/4*100;
     return '<div class="esp"><p class="esp-t">'+F.n+' · '+num1(car[f])+' de 5</p><div class="esp-barra" aria-hidden="true"><i style="left:'+pos.toFixed(0)+'%"></i></div>'+
       '<div class="esp-ext"><span>'+F.izq+'</span><span>'+F.der+'</span></div><p class="esp-txt">'+F.t[nivel(car[f])]+'</p></div>'; }).join("");
-  const cabPerfil = '<p class="perfil-nombre">Tu perfil</p>'+
-      '<p>Son tus resultados en el cuestionario de personalidad Mini-IPIP. Son tendencias, no etiquetas: todas valen para ponerse en marcha.</p>';
+  const cls = d.cls, pp = PERFILES[cls.principal], ps = cls.secundario ? PERFILES[cls.secundario] : null;
+  const cabPerfil = '<p class="perfil-nombre"><span class="perfil-punto" style="background:'+pp.color+'"></span>'+pp.n+' <span class="perfil-col">('+pp.cl+')</span></p>'+
+      (ps ? '<p class="perfil-tend">con tendencia a <strong>'+ps.n+'</strong> ('+ps.cl+')</p>' : '')+
+      '<p>'+pp.frase+'</p>'+
+      '<p class="perfil-aviso">Son tendencias, no etiquetas: todas valen para ponerse en marcha.</p>';
   const colDer = '<h3>Cómo eres</h3>'+espectros;
   let envio="";
-  if(estado==="ok") envio='<p><strong>Ya me ha llegado tu cuestionario.</strong> En un máximo de 48 horas hábiles recibirás en el contacto que me has dejado el detalle completo de tu resultado, y un enlace por si te apetece reservar día y hora para una charla inicial. Si no lo ves, mira en spam o promociones.</p>';
+  if(estado==="ok") envio='<p><strong>Te acabo de enviar tu resultado completo a tu correo.</strong> Trae el detalle de tu perfil y un enlace por si te apetece reservar día y hora para una charla inicial. Si no lo ves en unos minutos, mira en spam o promociones.</p>';
+  else if(estado==="sin-correo") envio='<p><strong>Ya me ha llegado tu cuestionario.</strong> Ahora no he podido enviarte el correo automático, así que te mando yo el detalle completo de tu resultado a tu correo en un máximo de 48 horas hábiles, con un enlace por si te apetece reservar una charla inicial.</p>';
   else if(estado==="error") envio='<p><strong>No he podido enviar tu cuestionario.</strong> Prueba de nuevo dentro de un rato o escríbeme a <a href="mailto:'+CONFIG.CORREO_DESTINO+'">'+CONFIG.CORREO_DESTINO+'</a>.</p>';
   else{
     const href="mailto:"+CONFIG.CORREO_DESTINO+"?subject="+encodeURIComponent("Cuestionario Reiniciarse a los 50 — "+d.nombre)+"&body="+encodeURIComponent(cuerpoCorreo(d));
     envio='<p><strong>Falta un último paso.</strong> Pulsa el botón para enviarme tus respuestas desde tu correo. Te contesto en un máximo de 48 horas hábiles.</p><p><a class="btn" href="'+href+'">Enviarme mis respuestas</a></p>';
   }
-  const invita = estado==='ok' ? '' : '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
+  const invita = (estado==='ok'||estado==='sin-correo') ? '' : '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
 
   $("resultado").innerHTML =
    '<div class="res">'+
-    '<div class="res-cab"><h2>Gracias, '+esc(d.nombre)+'.</h2><p>Esto es lo que se ve con lo que has contestado.</p>'+
+    '<div class="res-cab" style="border-top:12px solid '+pp.color+'"><h2>Gracias, '+esc(d.nombre)+'.</h2><p>Esto es lo que se ve con lo que has contestado.</p>'+
       cabPerfil+'</div>'+
     '<div class="res-cuerpo">'+
       '<div><h3>Tu mapa hoy</h3><div class="radar-caja" role="img" aria-label="Tu mapa de cinco áreas">'+radar(v, principal.id)+'</div>'+puntoFuerte+'<p class="nota-area">'+frase+'</p>'+extra+'</div>'+
       '<div>'+colDer+'</div>'+
     '</div>'+
     '<div class="res-pie">'+envio+invita+
-      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las veinte frases de «Cómo eres» son el cuestionario Mini-IPIP (Donnellan y otros, 2006), de uso público, en su traducción española publicada. Los tramos «bajo, medio, alto» son orientativos: el test no tiene baremo oficial. El mapa de las cinco áreas es mío y no forma parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
+      '<p class="nota">Esto no es un test clínico ni un diagnóstico. Las cincuenta frases de «Cómo eres» son los marcadores Big Five del IPIP (Goldberg), de uso público, en su traducción española publicada. Los cuatro perfiles (Chispa, Motor, Remanso y Faro) son los cuatro temperamentos clásicos con nombre y color propios, ordenados según extraversión y estabilidad emocional. No hay baremo oficial: el corte es el centro de la escala, y quien queda cerca del centro lo ves como «tendencia». El mapa de las cinco áreas es mío y no forma parte del test. Sirve para conocerte un poco mejor. En la charla lo repasamos juntos.</p>'+
       '<p class="aviso-crisis" style="margin-bottom:0">Si en algún momento piensas en hacerte daño, llama al <strong>024</strong> (24 horas, gratuito) o al <strong>112</strong>.</p></div>'+
    '</div>';
   $("marco").style.display="none";
