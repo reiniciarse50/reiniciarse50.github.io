@@ -17,12 +17,12 @@
 ]}
 </script>
 <style>
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(inter-latin-700-normal.woff2) format("woff2")}
 :root{
   --medianoche:#0B1430;   /* fondo oscuro */
   --indigo:#1E2A78;       /* color de marca */
@@ -512,11 +512,16 @@ footer strong{color:#fff}
     <h1>Reiniciarse a los 50</h1>
     <p class="lema">De no estar bien a estar bien.</p>
     <p class="lema2">Tú también puedes volver a ponerte en marcha.</p>
+    <div class="aviso-fase" style="max-width:760px;margin:1.6rem auto 0;padding:1.4rem 1.6rem;border:2px solid #FFC857;border-radius:14px;background:rgba(255,200,87,.12);text-align:center;font-size:1.1rem;line-height:1.6">
+      <p style="margin:0 0 .6em;font-weight:800;font-size:1.3rem;color:#FFC857">Estoy en fase de conversaciones iniciales</p>
+      <p style="margin:0 0 .6em">Hablo con unos pocos hombres de más de 50 años que han pasado, o están pasando, por experiencias complicadas y han tenido que reinventarse.</p>
+      <p style="margin:0 0 .6em">Si quieres contarme tu experiencia, tanto si fue buena como mala, me gustaría escucharte en una breve conversación de 15 minutos como máximo.</p>
+      <p style="margin:0">Escríbeme a <a href="#" data-correo style="color:#FFC857;font-weight:700">reiniciarse50@proton.me</a></p>
+    </div>
     </div>
     <div class="hero-cols">
-      <figure class="hero-img"><img src="img/camino.jpg" alt="Un hombre camina por una carretera vacía; al fondo, un sofá" width="1376" height="768"></figure>
+      <figure class="hero-img"><img src="camino.jpg" alt="Un hombre camina por una carretera vacía; al fondo, un sofá" width="1376" height="768"></figure>
       <div class="hero-txt">
-    <p class="aviso-fase" style="border-left:4px solid #FFC857;padding:.6em 1em;margin:0 0 1.2em;background:rgba(255,200,87,.12);font-size:1rem;line-height:1.5"><strong>Estoy en fase de conversaciones iniciales.</strong> Ahora mismo hablo con unos pocos hombres de más de 50 años para escuchar su experiencia. Si quieres contarme la tuya, escríbeme a <a href="mailto:reiniciarse50@proton.me" style="color:#FFC857">reiniciarse50@proton.me</a>.</p>
     <p class="lead">Muchos hombres, tras superar los 50, nos sentimos perdidos. Una separación, unos hijos que se van de casa, un trabajo que se acaba… o simplemente los años, que pasan. Hasta que un día nos damos cuenta de que no estamos bien.</p>
     <p class="lead">Pensamos que los malos hábitos de tantos años son lo normal a nuestra edad, y seguimos con ellos. Nos cuesta ponernos en marcha: llamar a ese amigo, buscar un nuevo trabajo, apuntarnos a un gimnasio… Siempre hay una razón para quedarnos en el sofá. <em>«Ya si acaso mañana.»</em></p>
     <p class="lead">Además, como somos de otra generación, lo de contarle nuestras cosas a otra persona, como que no. No lo hablamos. No queremos ni bromas ni burlas, y menos sentirnos juzgados. Eso, si tenemos a alguien a quien contárselo.</p>
@@ -553,7 +558,7 @@ footer strong{color:#fff}
     <ol class="ruta">
       <li class="rev" style="--i:1"><h3>Cuestionario</h3><p>Unos cinco minutos. Al terminar ves tu perfil y cómo estás hoy.</p></li>
       <li class="rev" style="--i:2"><h3>Recibes tu resultado</h3><p>Al terminar el cuestionario te llega por correo tu resultado, con un enlace para que elijas tú el día y la hora de la charla.</p></li>
-      <li class="rev" style="--i:3"><h3>Charla de 30 minutos</h3><p>Por videollamada. Me cuentas cómo estás y en qué punto te encuentras.</p></li>
+      <li class="rev" style="--i:3"><h3>Una charla breve</h3><p>Por videollamada. Me cuentas cómo estás y en qué punto te encuentras.</p></li>
       <li class="rev" style="--i:4"><h3>Informe inicial</h3><p>Después de la charla, en un máximo de 48 horas hábiles, te envío por escrito un resumen de lo que hemos hablado y unas primeras pinceladas de por dónde podría empezar tu reinicio.</p></li>
       <li class="rev" style="--i:5"><h3>Seis semanas</h3><p>Si te parece bien, te acompaño durante seis semanas, con videollamadas de seguimiento, para que avances por tu camino.</p></li>
     </ol>
@@ -572,7 +577,7 @@ footer strong{color:#fff}
   <div class="wrap">
     <p class="cita cita-top rev">No tengo una solución para ti. Pero sí estoy aquí para <span>acompañarte</span> mientras la encuentras.</p>
     <div class="sobre-cuerpo">
-      <figure class="retrato rev" id="foto-rafa"><img src="img/rafa.jpg" alt="Rafael Ahumada" width="800" height="1000" onerror="this.closest('figure').hidden=true"></figure>
+      <figure class="retrato rev" id="foto-rafa"><img src="rafa.jpg" alt="Rafael Ahumada" width="800" height="1000" onerror="this.closest('figure').hidden=true"></figure>
       <div class="rev">
         <h2>Quién soy</h2>
       <p>Me llamo Rafael Ahumada García y tengo 56 años. He tenido que reinventarme más de una vez: trabajos precarios, una separación, mudanzas, épocas de dinero justo, ser padre cerca de los 50 y el intento de volver a ponerme en forma a esta edad.</p>
@@ -600,7 +605,7 @@ footer strong{color:#fff}
     <div class="rev" id="faq">
       <h2>Preguntas que suelen hacerme</h2>
       <details><summary>¿Esto es terapia?</summary><p>No. No soy psicólogo ni médico y no diagnostico ni trato nada. Si lo que te pasa necesita a un profesional, te lo digo y te ayudo a dar el paso.</p></details>
-    <details><summary>¿Cuánto cuesta?</summary><p>La charla de 30 minutos y el informe inicial son gratuitos. El acompañamiento de seis semanas cuesta lo que ves al final de la página. Te lo digo antes de que decidas nada.</p></details>
+    <details><summary>¿Cuánto cuesta?</summary><p>De momento nada: estoy en fase de conversaciones iniciales, y la charla y tu resultado son gratuitos.</p></details>
     <details><summary>¿El perfil del cuestionario es un test psicológico?</summary><p>No. No es un test clínico y no diagnostica nada. Las 20 frases de «Cómo eres» son el Mini-IPIP, un cuestionario de personalidad de uso público, en su traducción española publicada, y se puntúa como indican sus autores. El mapa de las cinco áreas y las direcciones para empezar son mías y no forman parte de ese test. Sirve para que te conozcas un poco mejor, no para ponerte una etiqueta.</p></details>
     <details><summary>No me gusta hablar de mis cosas. ¿Tengo que contarlo todo?</summary><p>No. Cuentas lo que quieras, a tu ritmo. Nadie más tiene por qué enterarse.</p></details>
     <details><summary>¿Se graba la llamada?</summary><p>Nunca. Tomo notas para preparar tu informe y las borro a los tres meses, salvo que tú me pidas otra cosa.</p></details>
@@ -610,15 +615,6 @@ footer strong{color:#fff}
   </div>
 </section>
 
-<section class="precio-band" id="precio-sec">
-  <div class="wrap rev">
-    <p class="pb-sup">El acompañamiento</p>
-    <h2>Seis semanas a tu lado</h2>
-    <p class="pb-precio"><span id="precio">—</span></p>
-    <p class="pb-txt">La charla de 30 minutos y el informe inicial son gratuitos. Primero nos conocemos; después decides tú.</p>
-    <a class="btn" href="cuestionario.html">Hacer el cuestionario</a>
-  </div>
-</section>
 
 <section class="contacto-sec" id="contacto">
   <div class="wrap contacto-caja">

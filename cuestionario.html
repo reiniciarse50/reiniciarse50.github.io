@@ -13,12 +13,12 @@
 <meta property="og:description" content="De no estar bien a estar bien. Acompañamiento práctico para hombres de 50 en adelante.">
 
 <style>
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(inter-latin-700-normal.woff2) format("woff2")}
 :root{
   --medianoche:#0B1430;   /* fondo oscuro */
   --indigo:#1E2A78;       /* color de marca */
@@ -765,7 +765,7 @@ $("pares").innerHTML = PREFS.map((p,i)=>
   p.o.map((o,j)=>'<label class="op"><input type="radio" name="par'+i+'" value="'+j+'"><span>'+o.l+'</span></label>').join("")+
   '</div></fieldset>').join("");
 $("puertas-ops").innerHTML = ORDEN_PUERTAS.map(k=>
-  '<label class="op"><input type="checkbox" name="puerta" value="'+k+'"><span><b>'+PUERTAS[k].n+'.</b>&nbsp;'+PUERTAS[k].web+'</span></label>').join("");
+  '<label class="op"><input type="checkbox" name="puerta" value="'+k+'"><span><em style="font-style:normal;display:block"><b style="display:block;margin-bottom:.25em">'+PUERTAS[k].n+'</b>'+PUERTAS[k].web+'</em></span></label>').join("");
 document.querySelectorAll('input[name="puerta"]').forEach(cb=>cb.addEventListener("change",()=>{
   const marc=[...document.querySelectorAll('input[name="puerta"]:checked')];
   document.querySelectorAll('input[name="puerta"]').forEach(x=>{ x.disabled = marc.length>=2 && !x.checked; });
