@@ -983,7 +983,7 @@ function mostrar(d, perfil, estado){
     const href="mailto:"+CONFIG.CORREO_DESTINO+"?subject="+encodeURIComponent("Cuestionario Reiniciarse a los 50 — "+d.nombre)+"&body="+encodeURIComponent(cuerpoCorreo(d));
     envio='<p><strong>Falta un último paso.</strong> Pulsa el botón para enviarme tus respuestas desde tu correo. Te contesto en un máximo de 48 horas hábiles.</p><p><a class="btn" href="'+href+'">Enviarme mis respuestas</a></p>';
   }
-  const invita = (estado==='ok'||estado==='sin-correo') ? '' : '<p><strong>Lo mejor es que hablemos.</strong> Una charla breve por videollamada, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
+  const invita = (estado==='ok'||estado==='sin-correo') ? '' : '<p><strong>Lo mejor es que hablemos.</strong> Una videollamada de 30 minutos, gratuita, sin compromiso y sin grabar, para conocernos y ver si puedo ayudarte.</p>';
 
   $("resultado").innerHTML =
    '<div class="res">'+
