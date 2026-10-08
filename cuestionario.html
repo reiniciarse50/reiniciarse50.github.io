@@ -469,6 +469,24 @@ footer strong{color:#fff}
 </style>
 </head>
 <body>
+<style>
+#cerrado{position:fixed;inset:0;z-index:9999;background:rgba(11,20,48,.88);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#cerrado .caja{background:#fff;max-width:560px;width:100%;border-radius:18px;padding:34px 30px;border-top:6px solid var(--amanecer);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#cerrado h2{font-family:var(--display);font-weight:800;font-size:1.7rem;line-height:1.15;margin:0 0 14px;color:var(--medianoche)}
+#cerrado p{margin:0 0 14px}
+#cerrado .acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+</style>
+<div id="cerrado" role="dialog" aria-modal="true" aria-labelledby="cerrado-t">
+  <div class="caja">
+    <h2 id="cerrado-t">El cuestionario aún no está disponible</h2>
+    <p>Estoy empezando este proyecto y ahora mismo estoy en la fase de conversaciones iniciales. El cuestionario se abrirá cuando termine esta fase.</p>
+    <p>Si tienes cualquier duda o quieres participar, escríbeme a <a href="#" data-correo>hola@reiniciarse50.com</a> y cuéntame un poco sobre ti. Con esas primeras conversaciones voy aprendiendo y construyendo esto contigo.</p>
+    <div class="acciones">
+      <a class="btn" href="#" data-correo>Escribirme</a>
+      <a class="btn claro" href="index.html">Volver al inicio</a>
+    </div>
+  </div>
+</div>
 <header class="top" id="cab">
   <div class="wrap">
     <a class="marca" href="index.html">Reiniciarse a los 50<small>con Rafael Ahumada</small></a>
@@ -586,6 +604,7 @@ const CONFIG = {
   CORREO_DESTINO: "hola@reiniciarse50.com",
   WORKER_URL: "https://reiniciarse-resultado.reiniciarse50.workers.dev/",                       // Cloudflare Worker que envía al visitante su resultado por correo (vacío = se le dice que lo recibirá a mano)
   CAL_URL: "",                          // no se muestra en pantalla: el enlace va solo por correo
+  TEST_ABIERTO: false,                  // false = ventana "aún no disponible" sobre el cuestionario (fase de conversaciones iniciales); true = abierto
   PRECIO: "390 €"                       // precio del acompañamiento de seis semanas (propuesta a confirmar)
 };
 
@@ -1004,6 +1023,7 @@ function mostrar(d, perfil, estado){
 }
 
 document.querySelectorAll("[data-correo]").forEach(a=>{a.textContent=CONFIG.CORREO_DESTINO;a.href="mailto:"+CONFIG.CORREO_DESTINO;});
+if(CONFIG.TEST_ABIERTO){const c=document.getElementById("cerrado");if(c)c.remove();}else{document.body.style.overflow="hidden";}
 document.querySelectorAll("#precio").forEach(e=>e.textContent=CONFIG.PRECIO);
 
 /* cabecera sólida al bajar + aparición al hacer scroll */
