@@ -13,12 +13,12 @@
 <meta property="og:description" content="De no estar bien a estar bien. Acompañamiento práctico para hombres de 50 en adelante.">
 
 <style>
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(inter-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(inter-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(inter-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format("woff2")}
 :root{
   --medianoche:#0B1430;   /* fondo oscuro */
   --indigo:#1E2A78;       /* color de marca */
@@ -144,7 +144,7 @@ header.top .btn{min-height:44px;padding:.75em 1.3em;font-size:.95rem}
 .ayuda{color:var(--gris);font-size:.98rem;margin:0 0 1.2em}
 label.campo,.campo-l{display:block;font-weight:600;margin-bottom:.4em}
 .opc{font-weight:400;color:var(--gris)}
-input[type=text],textarea,select{width:100%;font:inherit;padding:.8em .95em;border:2px solid #A8B3D6;border-radius:14px;background:#fff;color:var(--tinta);min-height:54px}
+input[type=text],input[type=email],textarea,select{width:100%;font:inherit;padding:.8em .95em;border:2px solid #A8B3D6;border-radius:14px;background:#fff;color:var(--tinta);min-height:54px}
 textarea{min-height:112px;resize:vertical}
 input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--amanecer);outline-offset:1px;border-color:var(--indigo)}
 .fila{margin-bottom:20px}
@@ -152,7 +152,7 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px soli
 @media(min-width:700px){.dosc{grid-template-columns:1fr 1fr}}
 .err{color:var(--error);font-weight:600;font-size:.95rem;margin:.45em 0 0;display:none}
 .invalid>.err,.invalid .err.dentro{display:block}
-.invalid input[type=text],.invalid textarea{border-color:var(--error)}
+.invalid input[type=text],.invalid input[type=email],.invalid textarea{border-color:var(--error)}
 
 /* áreas + radar vivo */
 .areas-layout{display:grid;gap:24px}
@@ -309,7 +309,7 @@ h2{font-weight:600;letter-spacing:-.025em}
 .caja,.ruta li,.marco,.res,.contacto-acc,.pasitos li,.aviso-crisis,.resumen-error{border-radius:8px}
 .marco,.res{box-shadow:none;border:1px solid var(--linea)}
 .cuest-sec{background:var(--cielo)}
-.op span,input[type=text],textarea,select{border-radius:8px}
+.op span,input[type=text],input[type=email],textarea,select{border-radius:8px}
 .puertas-grid{gap:0 40px;margin-top:1.6em}
 @media(min-width:980px){.puertas-grid{grid-template-columns:repeat(2,1fr)}}
 .puerta{background:none;border-radius:0;border-top:1px solid var(--linea);padding:22px 0;display:grid;grid-template-columns:40px 1fr;column-gap:16px}
@@ -382,7 +382,7 @@ details p{color:#57575A}
 .barra-prog{background:#E4E4DF}
 .barra-prog i{background:#111}
 .op input:checked+span{background:#111;border-color:#111;color:#fff}
-.op span,input[type=text],textarea,select{border-color:#A8A8A1}
+.op span,input[type=text],input[type=email],textarea,select{border-color:#A8A8A1}
 input:focus-visible,textarea:focus-visible,select:focus-visible{border-color:#111}
 .check input{accent-color:#111}
 .aviso-crisis{background:var(--cielo)}
